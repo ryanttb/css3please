@@ -572,6 +572,20 @@ rule
 
 $.fn.applyStyles = function(){ generator.applyStyles(this[0]); return this; }
 
+// box_shadow inset
+$('.rule_wrapper .comment a.inset').live('click',function(){
+    $(this).text( $(this).text().replace(' off',' !on').replace(' on',' off').replace('!','') );
+    var ruleWrapper = $(this).closest('.rule_wrapper');
+    if (ruleWrapper.find('span.inset').length) {
+      ruleWrapper.find('span.inset').remove();
+    } else {
+      ruleWrapper.find('b[g="0"]').before('<span class="inset">inset </span>');
+    }
+    ruleWrapper.find('input').first().applyStyles();
+	  getFilters();
+    return false;
+});
+
 // commenting out
 $('.rule_wrapper .comment a.off').live('click',function(){
     $(this).text( $(this).text().replace(' off',' !on').replace(' on',' off').replace('!','') )
